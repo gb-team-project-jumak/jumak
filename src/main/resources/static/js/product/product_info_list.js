@@ -1,4 +1,3 @@
-// ===============================================================
 let orderValue = $('.section-head__more').val();
 let cateValue = $('input[name=shopCategory]:checked').val();
 

@@ -37,7 +37,7 @@ public class MainController {
         return "main/main";
     }
 
-    //    임시 이동경로
+    //   나에게 맞는 술 찾기
     @GetMapping("/search")
     public String searchPage(@RequestParam("keyword") String keyword, Model model){
         List<ProductSearchVo> searchList = mainService.findSearch(keyword);
@@ -50,7 +50,7 @@ public class MainController {
     }
 
 
-    //    임시 이동경로
+    //    상품검색
     @GetMapping("/find")
     public String findPage(){
         return "product/find";

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>주모's store</title>
+  <title>우리술 전체보기</title>
   <link rel="stylesheet" th:href="@{/css/product/common.css}" />
   <link rel="stylesheet" th:href="@{/css/product/product_info_detail.css}" />
   <link rel="stylesheet" th:href="@{/css/fragments/header.css}">
@@ -34,7 +34,7 @@
 
         <section class="product-info">
 
-
+          <!--상품정보-->
             <div class="product-info__topHead-box">
               <div class="product-info__topHead__title">
                 <h2 th:text="${detailproduct.productCategoryName}">와인/과실주</h2>
@@ -44,16 +44,14 @@
                 <p th:text="${detailproduct.productSubtitle}">서브타이틀</p>
               </div>
             </div>
-            <!--                    //product-info__topHead-box-->
             <div class="ingredient">
             <strong>주원료</strong>
             <span th:text="${detailproduct.productRawMaterial}" ></span>
             </div>
 
-            <!-- //product-info__price-box-->
 
             <div class="product-info__table-box">
-
+<!--            상품 표-->
               <table
                       class="tbl"
                       style="
@@ -135,21 +133,16 @@
 
     </div>
 
-      <!--    //product-content_box   -->
-
-
-      <!--            상품 디테일 이미지 -->
-
-      <!--  //product_content-wrap -->
+<!--    상품 상세페이지 상단 끝-->
 
   </div>
 
+<!--   상품 상세페이지 하단 -->
   <div class="item_goods_sec">
 
     <div class="detail_cont">
       <div class="detail_explain_box go01">
-        <div class="image-manual"><!-- 이미지 --></div>
-        <div class="txt-manual" th:each="dimg: ${dimgs}">
+        <div class="image-manual" th:each="dimg: ${dimgs}">
           <img th:src="'/upload/' + ${dimg.productImgPath} + '/'
             + ${dimg.productImgUuid} + '_' + ${dimg.productImgName}" alt=""
           />

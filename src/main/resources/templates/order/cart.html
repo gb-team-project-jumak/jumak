@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>장바구니</title>
   <link rel="stylesheet" th:href="@{/css/order/cart.css}">
   <link rel="stylesheet" th:href="@{/css/fragments/header.css}">
   <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
@@ -33,10 +33,10 @@
         </li>
         <li><span>03</span> 주문완료</li>
       </ol>
-    </section> <!-- /타이틀 섹션 -->
+    </section>
+    <!-- /타이틀 섹션 -->
 
-    <!-- 백엔드 작업 시 상품 목록을 form으로 보낼거면
-    반복요소에 input hidden 활용하기-->
+<!-- 상품 목록-->
     <form th:action="@{/order/next}" method="get" id="cart-form">
       <section class="cart-list">
         <table>
@@ -70,9 +70,7 @@
           <tr th:each="productDetail : ${cartList}">
             <td>
               <div>
-                <!-- id는 중복되면 안되므로 상품정보의 고유값을 연결하여 사용하기-->
                 <input type="checkbox" id="check-item1" class="check-box check-box__children" checked="checked" th:value="${productDetail.productNumber}">
-                <!-- 위에서 설정한 id를 label의 for에 동일하게 설정하기-->
                 <label for="check-item1" class="check-box__label check-box__label--checked"></label>
               </div>
             </td>
@@ -87,11 +85,7 @@
                 </a>
               </span>
                 <div class="product-info__box">
-                <!--  <div class="product-info__coupon">
-                    <img
-                        src="https://cdn-pro-web-251-112.cdn-nhncommerce.com/motioneye1_godomall_com/data/skin/front/a_sr01/img/common/btn/btn_coupon_apply.png"
-                        alt="">
-                  </div>-->
+
                   <!-- 상품 설명 넣기-->
                   <div class="product-info__detail" th:text="${productDetail.productName}+' '+${productDetail.productAlcoholicity}+'도'
               +' '+${productDetail.productNetWeight}+'ml'">
@@ -102,9 +96,6 @@
             <td class="product-count">
               <div class="product-count__content">
                 <strong><span th:text="${productDetail.productCount}"></span>개</strong>
-              <!--  <div class="count-change-btn">
-                  <span>옵션/수량변경</span>
-                </div>-->
               </div>
             </td>
             <td class="product-price">
@@ -127,7 +118,7 @@
                               th:text="${#numbers.formatInteger(isEven,0,'COMMA')}"></span>원</strong>
               </div>
             </td>
-            <!-- 전체 리스트 사이즈를 rowspan에 넣기-->
+
             <td class="delivery-charge" rowspan="">
               <div class="delivery-charge__content">
                 기본 - 고정배송비<br>
@@ -174,15 +165,7 @@
     </div>
 
     <div class="btn-box">
-      <div class="btn-list--left">
-        <!--<button id="deleteBtn" class="delete-btn">
-          선택 상품 삭제
-        </button>-->
-      </div>
       <div class="btn-list--right">
-        <!--<button id="choiceBtn" class="choice-order-btn" th:data-num="${session.userNumber}">
-          선택 상품 주문
-        </button>-->
         <button id="allBtn" class="all-order-btn" th:data-num="${session.userNumber}">
           전체 상품 주문
         </button>

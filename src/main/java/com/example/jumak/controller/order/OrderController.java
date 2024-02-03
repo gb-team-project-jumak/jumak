@@ -47,19 +47,8 @@ public class OrderController {
         model.addAttribute("salePrice", salePrice);
         model.addAttribute("totalPrice", totalPrice);
         model.addAttribute("totalCount", totalCount);
-        model.addAttribute("paymentTotal", totalPrice + 3000);
-
-//        ProductDetailVo productCDetail = storeService.findByDNumber(productNumber);
-//        model.addAttribute("productDetail",productCDetail);
-//        model.addAttribute("productCount",productCount);
-//        //        상품 토탈 가격
-//        model.addAttribute("totalPrice", productCount * productCDetail.getProductPrice());
-////        페이먼트 토탈 가격 (배송비+3000원)
-//        model.addAttribute("paymentTotal", (productCount *(productCDetail.getProductPrice() - (productCDetail.getProductPrice() *(productCDetail.getProductDiscount()/100.0))))
-//                +3000);
-
-
-
+        model.addAttribute("paymentTotal", salePrice + 3000);
+        
         return "order/cart";
     }
 
@@ -86,12 +75,11 @@ public class OrderController {
 
 
         model.addAttribute("cartList", cartList);
-
         model.addAttribute("salePrice", salePrice);
         model.addAttribute("totalPrice", totalPrice);
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("totalDiscount", totalDiscount);
-        model.addAttribute("paymentTotal", totalPrice + 3000);
+        model.addAttribute("paymentTotal", salePrice + 3000);
 
         Object getUserNumber = req.getSession().getAttribute("userNumber");
         OrderVo byUNumber = null ;
@@ -110,42 +98,37 @@ public class OrderController {
                             @RequestParam("productCount") Long productCount,
                             HttpServletRequest req,
                             Model model){
-// productNumber 로 next페이지에 넘겨줄 정 보 서비스에서 뽑아서 넘겨주고
-//        productCount 는 그냥 넘겨주기
+
         ProductDetailVo productDetail = storeService.findByDNumber(productNumber);
 
 
         model.addAttribute("productDetail",productDetail);
         model.addAttribute("productCount",productCount);
-        // productCount는 ${productCount}로 html에 사용
-        //        상품 토탈 가격
         model.addAttribute("totalPrice", productCount * productDetail.getProductPrice());
 //        페이먼트 토탈 가격 (배송비+3000원)
         model.addAttribute("paymentTotal", (productCount *(productDetail.getProductPrice() - (productDetail.getProductPrice() *(productDetail.getProductDiscount()/100.0))))
                 +3000);
 
-        //주문자정보 사용자정보뿌리기 매퍼에서부터 찾아서
+
         Object userNumber = req.getSession().getAttribute("userNumber");
-
-        //오더서비스연결해서 모델로 뿌리기
-
+        
         OrderVo byUNumber = null ;
-
         byUNumber = orderService.findByUNumber((Long) userNumber);
-
         model.addAttribute("orderUInfo",byUNumber);
         
         return "order/storeorder";
     }
 
 
+//    주문 실패
     @GetMapping("/fail")
     public String orderFail(Model model, Integer price, @SessionAttribute("userNumber") Long userNumber){
-//        OrderVo orderFin = orderService.findByNumber(userNumber);
-//        model.addAttribute("finalorder",orderFin);
+
         model.addAttribute("totalprice",price);
         return "order/storeorderfail";
     }
+    
+//    주문 성공
     @GetMapping("/success")
     public String orderSuccess(Model model, Integer price, @SessionAttribute("userNumber") Long userNumber){
         OrderVo orderFin = orderService.findByNumber(userNumber);
@@ -153,7 +136,6 @@ public class OrderController {
         model.addAttribute("totalprice",price);
         return "order/storeordersucc";
     }
-
 
 
 

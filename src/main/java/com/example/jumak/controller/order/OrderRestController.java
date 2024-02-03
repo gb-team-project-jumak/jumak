@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.*;
 public class OrderRestController {
     private final OrderService orderService;
 
+//    배송지 입력
     @GetMapping("/delivery")
     public OrderVo orderDelivery(@SessionAttribute("userNumber") Long userNumber){
        return orderService.findByUNumber(userNumber);
     }
 
+//    결제 정보
     @PostMapping("/payment")
     public void paymentOrder(@RequestBody OrderVo orderVo,
                              @SessionAttribute("userNumber") Long userNumber){
