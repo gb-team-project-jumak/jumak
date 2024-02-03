@@ -1,6 +1,7 @@
 package com.example.jumak.service.mypage;
 
 import com.example.jumak.domain.dto.user.UserDto;
+import com.example.jumak.domain.vo.myPage.InquiryVo;
 import com.example.jumak.domain.vo.myPage.OrderDetailVo;
 import com.example.jumak.domain.vo.myPage.OrderStatusVo;
 import com.example.jumak.mapper.mypage.MypageMainMapper;

@@ -93,30 +93,30 @@ $(document).ready(function() {
             },
             error: function(xhr, status, error) {
                 console.error("Error during AJAX request:", error);
+                console.log('에러다!!')
             }
         });
     });
 
+    function updateTable(data) {
+        let tbody = $("tbody");
+        tbody.empty();
+
+        $.each(data, function(index, inquiryVo) {
+            let row = $("<tr>").addClass("table_data");
+            row.append($("<td>").text(inquiryVo.qaDate));
+            row.append($("<td>").text(inquiryVo.qaCategoryName));
+            // row.append($("<td>").text(inquiryVo.qaTitle));
+            row.append($("<td>").html(`<a href="/mypage/inquiry-view?qaNumber=${inquiryVo.qaNumber}" target="_blank">${inquiryVo.qaTitle}</a>`));
+            row.append($("<td>").text(inquiryVo.qaReply));
+            row.append($("<td>").text(inquiryVo.qaReplyDate));
+            tbody.append(row);
+
+            console.log(row)
+        });
+    }
 });
 
-
-function updateTable(data) {
-    let tbody = $("tbody");
-    tbody.empty();
-
-    $.each(data, function(index, inquiryVo) {
-        let row = $("<tr>").addClass("table_data");
-        row.append($("<td>").text(inquiryVo.qaDate));
-        row.append($("<td>").text(inquiryVo.qaCategoryName));
-        // row.append($("<td>").text(inquiryVo.qaTitle));
-        row.append($("<td>").html(`<a href="/mypage/inquiry-view?qaNumber=${inquiryVo.qaNumber}" target="_blank">${inquiryVo.qaTitle}</a>`));
-        row.append($("<td>").text(inquiryVo.qaReply));
-        row.append($("<td>").text(inquiryVo.qaReplyDate));
-        tbody.append(row);
-
-        // console.log(row)
-    });
-}
 
 $('.add_post_btn').on('click', function (){
     window.location.href = '/mypage/inquiry-detail';
