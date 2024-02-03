@@ -28,8 +28,7 @@ public class MypageMainRestController {
             @RequestParam String startDate,
             @RequestParam String endDate,
             HttpServletRequest req) {
-//        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
-        Long userNumber = 1L;
+        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
         OrderDetailVo orderDetailVo = new OrderDetailVo();
         orderDetailVo.setStartDate(startDate);
         orderDetailVo.setEndDate(endDate);
@@ -44,8 +43,7 @@ public class MypageMainRestController {
             @RequestParam String startDate,
             @RequestParam String endDate,
             HttpServletRequest req) {
-//        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
-        Long userNumber = 1L;
+        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
         OrderDetailVo orderDetailVo = new OrderDetailVo();
         orderDetailVo.setStartDate(startDate);
         orderDetailVo.setEndDate(endDate);
@@ -62,8 +60,9 @@ public class MypageMainRestController {
             @RequestParam String startDate,
             @RequestParam String endDate,
             HttpServletRequest req) {
-//        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
-        Long userNumber = 1L;
+        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
+
+
         OrderDetailVo orderDetailVo = new OrderDetailVo();
         orderDetailVo.setStartDate(startDate);
         orderDetailVo.setEndDate(endDate);
@@ -78,8 +77,7 @@ public class MypageMainRestController {
     public List<InquiryVo> Inquiry(@RequestParam String startDate,
                                    @RequestParam String endDate,
                                    HttpServletRequest req) {
-//        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
-        Long userNumber = 1L;
+        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
 
         InquiryVo inquiryVo = new InquiryVo();
         inquiryVo.setStartDate(startDate);
@@ -91,8 +89,7 @@ public class MypageMainRestController {
 
     @GetMapping("/member-info")
     public Long enterMember(HttpServletRequest req, @RequestParam String userPassword) {
-        //        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
-        Long userNumber = 1L;
+        Long userNumber = (Long) req.getSession().getAttribute("userNumber");
 
         MemberVo memberVo = new MemberVo();
         memberVo.setUserNumber(userNumber);

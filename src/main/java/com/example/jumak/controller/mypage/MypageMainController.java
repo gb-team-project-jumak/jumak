@@ -2,6 +2,7 @@ package com.example.jumak.controller.mypage;
 
 import com.example.jumak.domain.dto.qa.QaDto;
 import com.example.jumak.domain.dto.user.UserDto;
+import com.example.jumak.domain.vo.myPage.InquiryVo;
 import com.example.jumak.domain.vo.myPage.MemberVo;
 import com.example.jumak.domain.vo.myPage.OrderDetailVo;
 import com.example.jumak.domain.vo.myPage.OrderStatusVo;
@@ -152,7 +153,8 @@ public class MypageMainController {
     @GetMapping("/inquiry")
     public String inquiry (Model model, HttpServletRequest req)
     {
-                Long userNumber = (Long)req.getSession().getAttribute("userNumber");
+        Long userNumber = 61L;
+//                Long userNumber = (Long)req.getSession().getAttribute("userNumber");
 
 //       회원 이름 조회
         String userName = mypageMainService.findUserName(userNumber);
@@ -178,7 +180,11 @@ public class MypageMainController {
 
 //    1대1문의 작성
     @GetMapping("/inquiry-detail")
-    public String inquiryDetail(@SessionAttribute(value = "userNumber", required = false) Long userNumber) {
+    public String inquiryDetail(@SessionAttribute(value = "userNumber", required = false) Long userNumber,
+                                Model model) {
+        String nickName = mypageMainService.findNickName(userNumber);
+
+        model.addAttribute("nickName", nickName);
 
         return userNumber == null ? "user/login/login" : "mypage/inquiry_detail/inquiry_detail";
     }
@@ -192,7 +198,7 @@ public class MypageMainController {
     Long qaNumber = qaDto.getQaNumber();
 
 
-    redirectAttributes.addFlashAttribute("qaNumber", qaNumber);
+        redirectAttributes.addFlashAttribute("qaNumber", qaNumber);
 
     return new RedirectView("/mypage/inquiry");
     }

@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.jumak.mapper.mypage.InquiryMapper">
     <select id="selectInquiry" resultType="inquiryVo">
-        SELECT QA.USER_NUMBER, QA.QA_TITLE, QA.QA_REPLY, QA.QA_REPLY_DATE, TO_CHAR(QA.QA_DATE, 'YYYY-MM-DD') AS QA_DATE,
-               JQC.QA_CATEGORY_NAME, QA.QA_NUMBER
-        FROM JUMAK_QA QA JOIN JUMAK_QA_CATEGORY JQC on JQC.QA_CATEGORY_NUMBER = QA.QA_CATEGORY_NUMBER
-        WHERE QA.USER_NUMBER = #{userNumber} AND TO_CHAR(QA.QA_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}
+        SELECT QA_NUMBER, QA_TITLE, QA_DATE, QA_REPLY, JQ.QA_CATEGORY_NUMBER,
+               JQC.CATEGORY_NAME
+        FROM JUMAK_QA JQ JOIN JUMAK_QA_CATEGORY JQC on JQC.QA_CATEGORY_NUMBER = JQ.QA_CATEGORY_NUMBER
+        WHERE USER_NUMBER = #{userNumber} AND TO_CHAR(QA.QA_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}
     </select>
 
     <select id="selectInquiryDetail" resultType="qaDto">
