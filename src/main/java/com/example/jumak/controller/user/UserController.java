@@ -18,33 +18,33 @@ import org.springframework.web.servlet.view.RedirectView;
 public class UserController {
  private final UserService userService;
 
-// 단순페이지 이동 처리
+// 회원가입 동의안
     @GetMapping("/join/agree")
     public String joinAgree(){
         return "user/join/join-agree";
     }
 
-//    페이지 이동 처리
+//    회원 정보 입력
     @GetMapping("/join")
     public String joinInfo(){
         return "user/join/join_info";
     }
-
+//    회원 가입 성공
     @GetMapping("/join/success")
     public String joinOk(){
         return "user/join/join_ok";
     }
-
+//   로그인
     @GetMapping("/login")
     public String login(){
         return "user/login/login";
     }
-
+//    ID 찾기
     @GetMapping("/find-id")
     public String findId(){
         return "user/find_id/find_id";
     }
-
+//    PW 찾기
     @GetMapping("/find-pwd")
     public String findPwd(){
         return "user/find_pw/find_pwd";

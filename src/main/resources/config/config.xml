@@ -26,8 +26,6 @@
         <typeAlias type="com.example.jumak.domain.dto.product.ProductImgMainDto" alias="productImgMainDto"/>
         <typeAlias type="com.example.jumak.domain.dto.product.ProductCategoryDto" alias="productCategoryDto"/>
         <typeAlias type="com.example.jumak.domain.dto.product.ProductImgDto" alias="productImgDto"/>
-        <typeAlias type="com.example.jumak.domain.dto.product.ProductReviewDto" alias="productReviewDto"/>
-        <typeAlias type="com.example.jumak.domain.dto.product.ProductReviewImgDto" alias="productReviewImgDto"/>
         <typeAlias type="com.example.jumak.domain.dto.product.ProductKeywordDto" alias="productKeywordDto"/>
         <typeAlias type="com.example.jumak.domain.dto.order.OrderDetailDto" alias="orderDetailDto"/>
         <typeAlias type="com.example.jumak.domain.vo.order.OrderDetailPayVo" alias="orderDetailPayVo"/>
@@ -36,7 +34,7 @@
 
         <typeAlias type="com.example.jumak.domain.dto.delivery.DeliveryAddressDto" alias="deliveryaddressDto"/>
 
-        <typeAlias type="com.example.jumak.domain.vo.product.ProductReviewVo" alias="productReviewVo"/>
+
         <typeAlias type="com.example.jumak.domain.vo.product.ProductDetailVo" alias="productDetailVo"/>
         <typeAlias type="com.example.jumak.domain.dto.order.OrderDto" alias="orderDto"/>
         <typeAlias type="com.example.jumak.domain.vo.product.ProductVo" alias="productVo"/>

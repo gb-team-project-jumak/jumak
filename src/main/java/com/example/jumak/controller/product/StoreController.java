@@ -18,6 +18,7 @@ import java.util.List;
 public class StoreController {
     private final StoreService storeService;
 
+    // 상품 전체보기
     @GetMapping("/list")
     public String productList(String orderCond, String cate, Criteria criteria, Model model){
         criteria.setAmount(10);
@@ -32,7 +33,7 @@ public class StoreController {
 
 
 
-    //    상품 디테일
+    //    상품 상세보기
     @GetMapping("/view")
     public String detail(@RequestParam("productNumber") Long productNumber, Model model){
 

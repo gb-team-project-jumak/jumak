@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/commons/fonts.css}">
     <link rel="stylesheet" th:href="@{/css/commons/default.css}">
-    <title>상품 주문하기</title>
+    <title>장바구니 상품 주문하기</title>
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
@@ -37,8 +37,6 @@
             </ol>
         </section> <!-- /타이틀 섹션 -->
 
-        <!-- 백엔드 작업 시 상품 목록을 form으로 보낼거면
-        반복요소에 input hidden 활용하기-->
         <form action="">
             <section class="order-list">
                 <table>
@@ -504,7 +502,8 @@
             <div class="cart-final_total__price">
                 <div class="cart-final_total__sum">
                     <span>최종 결제 금액</span>
-                    <span class="final_price-color"><strong th:text="${#numbers.formatInteger(paymentTotal,0,'COMMA')}"></strong>원</span>
+                    <span class="final_price-color"><strong th:with="paymentTotal=${salePrice + 3000}"
+                                                            th:text="${#numbers.formatInteger(paymentTotal,0,'COMMA')}"></strong>원</span>
                     <input type="hidden" class="price_total" name="paymentTotal" th:value="${paymentTotal}">
                 </div>
             </div>
@@ -540,7 +539,7 @@
 
 
         </div>
-<!--        주문 info-->
+<!--        주문서 작성 끝-->
 
 </main>
 

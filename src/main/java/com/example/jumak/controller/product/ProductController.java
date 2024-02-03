@@ -20,14 +20,13 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
 
-//    우리술 전체보기
+//    NEW 우리술
     @GetMapping("/list")
     public String productMain(Model model){
 
         List<ProductInfoVo> cateList = productService.findByCate();
         model.addAttribute("products",cateList);
-
-
+        
         return "product/product_info_main";
     }
 
@@ -43,7 +42,7 @@ public class ProductController {
         model.addAttribute("pageInfo", new PageVo(productService.findTotalByCond(cate).intValue(),criteria));
         return "product/product_info_list";}
     
-    //우리술 상품 디테일
+    //우리술 상품 상세보기
     @GetMapping("/detail")
     public String productDetail(@RequestParam("productNumber")Long productNumber,Model model){
 

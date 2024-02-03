@@ -2,7 +2,7 @@
 let $deliveryBox = $('.delivery-box');
 
 
-//기본정보
+//배송지 기본정보
 $deliveryBox.on('click',function (e){
    let idx = $deliveryBox.index(this);
    console.log(idx);

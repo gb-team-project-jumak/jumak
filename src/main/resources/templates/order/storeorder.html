@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/commons/fonts.css}">
     <link rel="stylesheet" th:href="@{/css/commons/default.css}">
-    <title>상품 주문하기</title>
+    <title>바로구매</title>
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
@@ -37,8 +37,6 @@
             </ol>
         </section> <!-- /타이틀 섹션 -->
 
-        <!-- 백엔드 작업 시 상품 목록을 form으로 보낼거면
-        반복요소에 input hidden 활용하기-->
         <form action="">
             <section class="order-list">
                 <table>
@@ -187,9 +185,7 @@
                     <!-- //agreement_box -->
                     <div class="form_element">
 
-                        <!-- id는 중복되면 안되므로 상품정보의 고유값을 연결하여 사용하기-->
                         <input type="checkbox" id="check-item1" class="check-box check-box__children">
-                        <!-- 위에서 설정한 id를 label의 for에 동일하게 설정하기-->
                         <label for="check-item1" class="check-box__label check-box__label--checked"><strong>(필수)</strong> 상품 공급사 개인정보 제공
                             동의에 대한 내용을 확인 하였으며 이에 동의
                             합니다.</label>
@@ -261,14 +257,6 @@
                         </th>
                         <td class="user_email">
                             <input type="text" name="orderEmail" id="orderEmail" th:value="${orderUInfo.userEmail}" />
-
-                            <!--<select class="chosen-select">
-                                <option value="self"selected="selected">직접입력</option>
-                                <option value="naver.com">naver.com</option>
-                                <option value="hanmail.net">hanmail.net</option>
-                                <option value="daum.net">daum.net</option>
-                                <option value="gmail.com">gmail.com</option>
-                            </select>-->
 
                         </td>
                     </tr>
@@ -542,7 +530,7 @@
 
 
         </div>
-<!--        주문 info-->
+<!--        주문서 작성 끝-->
 
 </main>
 

@@ -17,114 +17,112 @@
 <header th:replace="~{/fragments/header :: header}"></header>
 <!-- //헤더 -->
 <main>
-<div class="container">
-  <!-- 카테고리 -->
-  <form>
-  <div class="category-area">
-    <div class="category-wrap">
-      <label for="category-best" class="category-box">
-        <span>베스트 상품🏆</span>
-        <input
-                type="radio"
-                id="category-best"
-                name="shopCategory"
-                value="best"
-                th:checked="${'best' == cate || cate == null}"
-        />
-      </label>
-      <label for="category-all" class="category-box">
-        <span>전체상품</span>
-        <input
-                type="radio"
-                id="category-all"
-                name="shopCategory"
-                value="all"
-                th:checked="${'all' == cate}"
-        />
-      </label>
-      <label for="category-a" class="category-box">
-        <span>막걸리/탁주</span>
-        <input type="radio" id="category-a" name="shopCategory" value="group1" th:checked="${'group1' == cate}"/>
-      </label>
-      <label for="category-b" class="category-box">
-        <span>증류주/리큐르</span>
-        <input type="radio" id="category-b" name="shopCategory" value="group2" th:checked="${'group2' == cate}"/>
-      </label>
-      <label for="category-c" class="category-box">
-        <span>약주/청주</span>
-        <input type="radio" id="category-c" name="shopCategory" value="group3" th:checked="${'group3' == cate}"/>
-      </label>
-      <label for="category-d" class="category-box">
-        <span>와인/과실주</span>
-        <input type="radio" id="category-d" name="shopCategory" value="group4" th:checked="${'group4' == cate}"/>
-      </label>
-      <label for="category-e" class="category-box">
-        <span>기타주류</span>
-        <input type="radio" id="category-e" name="shopCategory" value="group5" th:checked="${'group5' == cate}"/>
-      </label>
+    <div class="container">
+      <!-- 카테고리 -->
+      <form>
+      <div class="category-area">
+        <div class="category-wrap">
+          <label for="category-best" class="category-box">
+            <span>베스트 상품🏆</span>
+            <input
+                    type="radio"
+                    id="category-best"
+                    name="shopCategory"
+                    value="best"
+                    th:checked="${'best' == cate || cate == null}"
+            />
+          </label>
+          <label for="category-all" class="category-box">
+            <span>전체상품</span>
+            <input
+                    type="radio"
+                    id="category-all"
+                    name="shopCategory"
+                    value="all"
+                    th:checked="${'all' == cate}"
+            />
+          </label>
+          <label for="category-a" class="category-box">
+            <span>막걸리/탁주</span>
+            <input type="radio" id="category-a" name="shopCategory" value="group1" th:checked="${'group1' == cate}"/>
+          </label>
+          <label for="category-b" class="category-box">
+            <span>증류주/리큐르</span>
+            <input type="radio" id="category-b" name="shopCategory" value="group2" th:checked="${'group2' == cate}"/>
+          </label>
+          <label for="category-c" class="category-box">
+            <span>약주/청주</span>
+            <input type="radio" id="category-c" name="shopCategory" value="group3" th:checked="${'group3' == cate}"/>
+          </label>
+          <label for="category-d" class="category-box">
+            <span>와인/과실주</span>
+            <input type="radio" id="category-d" name="shopCategory" value="group4" th:checked="${'group4' == cate}"/>
+          </label>
+          <label for="category-e" class="category-box">
+            <span>기타주류</span>
+            <input type="radio" id="category-e" name="shopCategory" value="group5" th:checked="${'group5' == cate}"/>
+          </label>
+        </div>
+      </div>
+        </form>
+      <!-- /카테고리 -->
+      <!-- 정렬 -->
+      <section class="products_pick_list">
+        <div class="section-head">
+          <div class="section-head__title">
+            총 <span th:text="${pageInfo.total}"
+                    th:style="'font-weight: bold; color: rgb(240, 200, 100);'"></span>개의 상품
+          </div>
+          <select class="section-head__more">
+            <option value="date" th:selected="${'date' == orderCond}">등록일순</option>
+            <option value="sale" th:selected="${'sale' == orderCond}">판매인기순</option>
+            <option value="rowPrice" th:selected="${'rowPrice' == orderCond}">낮은가격순</option>
+            <option value="highPrice" th:selected="${'highPrice' == orderCond}">높은가격순</option>
+          </select>
+        </div>
+
+      <div class="store-list product__list">
+        <!-- 반복 요소 -->
+        <article class="list-product" th:each="product: ${products}">
+          <div class="sale-box">
+                  <span>
+                    <strong class="sale-percent" th:text="${product.productDiscount}"></strong>%
+                  </span>
+            <span>SALE</span>
+          </div>
+          <a th:href="@{/store/view(productNumber=${product.productNumber})}">
+          <div class="main_img-box">
+            <img th:src="'/upload/' + ${product.productImgMainPath} + '/' + ${product.productImgMainUuid} + '_' + ${product.productImgMainName}" alt="">
+          </div>
+          <div class="title-box">
+            <p class="name" th:text="${product.productName +' '+ product.productAlcoholicity + '도'+' ' + product.productNetWeight + 'ml'}">마스브루어리+도수+용량</p>
+            <p class="sale-price" th:with="isEven=${product.productPrice - (product.productPrice * (product.productDiscount/100.0))}" th:text="${#numbers.formatInteger(isEven,0,'COMMA') + '원'}">26,600원</p>
+            <del class="price" th:text="${product.productPrice}"> 28,000원</del>
+          </div>
+          </a>
+        </article>
+        <!-- /반복 요소 -->
+      </div>
+      </section>
+    <!-- 페이징 처리  -->
+    <div class="page-container">
+      <ul class="page-box" th:object="${pageInfo}">
+        <a th:href="@{/store/list(orderCond=${orderCond},cate=${cate},page=*{startPage - 1})}" class="page-a" th:if="*{prev}">
+          <li class="page-num prev">&lt</li>
+        </a>
+
+        <a th:href="@{/store/list(orderCond=${orderCond},cate=${cate},page=${i})}" class="page-a" th:each="i : ${#numbers.sequence(pageInfo.startPage,pageInfo.endPage)}">
+          <li class="page-num" th:text="${i}" th:classappend="${i == pageInfo.criteria.page ? 'active' : '' }"></li>
+        </a>
+
+
+        <a th:href="@{/store/list(orderCond=${orderCond},cate=${cate},page=*{endPage + 1})}" class="page-a" th:if="*{next}">
+          <li class="page-num next">&gt</li>
+        </a>
+      </ul>
     </div>
-  </div>
-    </form>
-  <!-- /카테고리 -->
-  <!-- 정렬 -->
-  <section class="products_pick_list">
-    <div class="section-head">
-      <div class="section-head__title">
-        총 <span th:text="${pageInfo.total}"
-                th:style="'font-weight: bold; color: rgb(240, 200, 100);'"></span>개의 상품
-      </div>
-      <select class="section-head__more">
-        <option value="date" th:selected="${'date' == orderCond}">등록일순</option>
-        <option value="sale" th:selected="${'sale' == orderCond}">판매인기순</option>
-        <option value="rowPrice" th:selected="${'rowPrice' == orderCond}">낮은가격순</option>
-        <option value="highPrice" th:selected="${'highPrice' == orderCond}">높은가격순</option>
-      </select>
+    <!-- /페이징 처리 -->
     </div>
-
-  <div class="store-list product__list">
-    <!-- 반복 요소 -->
-    <article class="list-product" th:each="product: ${products}">
-      <div class="sale-box">
-              <span>
-                <strong class="sale-percent" th:text="${product.productDiscount}"></strong>%
-              </span>
-        <span>SALE</span>
-      </div>
-      <a th:href="@{/store/view(productNumber=${product.productNumber})}">
-      <div class="main_img-box">
-        <img th:src="'/upload/' + ${product.productImgMainPath} + '/' + ${product.productImgMainUuid} + '_' + ${product.productImgMainName}" alt="">
-      </div>
-      <div class="title-box">
-        <p class="name" th:text="${product.productName +' '+ product.productAlcoholicity + '도'+' ' + product.productNetWeight + 'ml'}">마스브루어리+도수+용량</p>
-        <p class="sale-price" th:with="isEven=${product.productPrice - (product.productPrice * (product.productDiscount/100.0))}" th:text="${#numbers.formatInteger(isEven,0,'COMMA') + '원'}">26,600원</p>
-        <del class="price" th:text="${product.productPrice}"> 28,000원</del>
-      </div>
-      </a>
-    </article>
-    <!-- /반복 요소 -->
-  </div>
-  </section>
-<!-- 페이징 처리  -->
-<div class="page-container">
-  <ul class="page-box" th:object="${pageInfo}">
-    <a th:href="@{/store/list(orderCond=${orderCond},cate=${cate},page=*{startPage - 1})}" class="page-a" th:if="*{prev}">
-      <li class="page-num prev">&lt</li>
-    </a>
-
-    <a th:href="@{/store/list(orderCond=${orderCond},cate=${cate},page=${i})}" class="page-a" th:each="i : ${#numbers.sequence(pageInfo.startPage,pageInfo.endPage)}">
-      <li class="page-num" th:text="${i}" th:classappend="${i == pageInfo.criteria.page ? 'active' : '' }"></li>
-    </a>
-
-
-    <a th:href="@{/store/list(orderCond=${orderCond},cate=${cate},page=*{endPage + 1})}" class="page-a" th:if="*{next}">
-      <li class="page-num next">&gt</li>
-    </a>
-  </ul>
-</div>
-<!-- /페이징 처리 -->
-
-
-
 </main>
 
 <footer th:replace="~{/fragments/footer :: footer}"></footer>

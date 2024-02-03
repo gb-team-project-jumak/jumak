@@ -194,13 +194,7 @@ main{
     overflow: hidden;
     position: relative;
 }
-/*.form_element input {
-    position: absolute;
-    top: 3px;
-    left: 1px;
-    width: 0;
-    z-index: -1;
-}*/
+
 input[type="checkbox"] {
     position: relative;
     top: 5px;
@@ -211,7 +205,6 @@ input[type="checkbox"] {
 .form_element label.check_s {
     min-width: 13px;
     padding: 0 0 0 22px;
-   /* background: url(../../img/common/input/check_off_small.png) no-repeat 1px 2px;*/
     font-size: 12px;
     line-height: 20px;
 }
@@ -223,7 +216,6 @@ input[type="checkbox"] {
     min-width: 100px;
     min-height: 20px;
     padding: 0 10px;
-    /*background: url(../../img/common/input/check_off.png) no-repeat 1px top;*/
 }
 .order_agree_cont strong {
     color: rgb(240, 200, 100);
@@ -387,13 +379,6 @@ input[type="checkbox"] {
     position: relative;
 }
 
-/*.form_element input {
-    position: absolute;
-    top: 3px;
-    left: 1px;
-    width: 0;
-    z-index: -1;
-}*/
 .payment_final .form_element label.check_s em b {
     color: rgb(240, 200, 100);
 }
@@ -449,12 +434,10 @@ input[type="checkbox"] {
     min-width: 100px;
     min-height: 20px;
     padding: 0 10px;
-    /*background: url(../../img/common/input/check_off.png) no-repeat 1px top;*/
 }
 
 .form_card_element input[type='radio'] {
     position: absolute;
     top: 4px;
     left: 2px;
-  /*  opacity: 0;*/
 }

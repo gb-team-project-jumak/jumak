@@ -175,25 +175,14 @@ main{
 
 /* 하단의 버튼들 스타일 */
 .btn-box{
-    display: flex;
-    justify-content: space-between;
     margin-top: 30px;
-}
-.delete-btn{
-    color: #484848;
-    border: 1px solid #777777;
-    min-width: 120px;
-    height: 30px;
-    padding: 0 15px;
-    line-height: 28px;
-    cursor: pointer;
 }
 
 .btn-list--right{
     display: flex;
+    justify-content: center;
 }
 
-.choice-order-btn,
 .all-order-btn{
     display: flex;
     justify-content: center;
@@ -208,11 +197,7 @@ main{
     font-size: 16px;
     cursor: pointer;
 }
-.choice-order-btn{
-    color: #3e3d3c;
-    border: 1px solid #cccccc;
-    background: #fff;
-}
+
 
 .all-order-btn{
     color: #ffffff;
